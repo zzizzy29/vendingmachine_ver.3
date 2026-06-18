@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>스마트 자판기 관리 시스템</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+
+<header>
+
+```
+<div class="title-box">
+
+    <h1>🥤 스마트 자판기 관리 시스템</h1>
+
+    <p>
+        재고 관리 · 판매 기록 · 통계 분석
+    </p>
+
+</div>
+
+<div class="header-buttons">
+
+    <button onclick="adminLogin()">
+        관리자
+    </button>
+
+    <button onclick="toggleTheme()">
+        다크모드
+    </button>
+
+    <button onclick="exportCSV()">
+        CSV 저장
+    </button>
+
+    <label class="upload-btn">
+
+        CSV 불러오기
+
+        <input
+            type="file"
+            accept=".csv"
+            onchange="importCSV(event)"
+            hidden
+        >
+
+    </label>
+
+</div>
+```
+
+</header>
+
+<section class="dashboard">
+
+```
+<div class="stat-card">
+
+    <h2 id="productCount">
+        0
+    </h2>
+
+    <p>상품 수</p>
+
+</div>
+
+<div class="stat-card">
+
+    <h2 id="totalStock">
+        0
+    </h2>
+
+    <p>총 재고</p>
+
+</div>
+
+<div class="stat-card">
+
+    <h2 id="soldOutCount">
+        0
+    </h2>
+
+    <p>품절</p>
+
+</div>
+
+<div class="stat-card">
+
+    <h2 id="lowStockCount">
+        0
+    </h2>
+
+    <p>부족 재고</p>
+
+</div>
+```
+
+</section>
+
+<div class="main-layout">
+
+```
+<section class="vending-section">
+
+    <h2>
+        🥤 자판기
+    </h2>
+
+    <div
+        id="products"
+        class="vending-machine"
+    ></div>
+
+</section>
+
+<section class="side-panel">
+
+    <div class="panel-card">
+
+        <h3>
+            📊 재고 그래프
+        </h3>
+
+        <canvas id="stockChart"></canvas>
+
+    </div>
+
+    <div class="panel-card">
+
+        <h3>
+            🔧 관리자 기능
+        </h3>
+
+        <button onclick="addProduct()">
+            상품 추가
+        </button>
+
+        <button onclick="resetStock()">
+            전체 초기화
+        </button>
+
+    </div>
+
+    <div class="panel-card">
+
+        <h3>
+            📜 최근 활동
+        </h3>
+
+        <ul id="logs"></ul>
+
+    </div>
+
+</section>
+```
+
+</div>
+
+<div class="search-area">
+
+```
+<input
+    type="text"
+    id="search"
+    placeholder="상품 검색"
+    oninput="renderProducts()"
+>
+```
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
